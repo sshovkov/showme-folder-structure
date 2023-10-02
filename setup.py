@@ -5,9 +5,9 @@ with open("README.md", "r") as f:
 
 setup(
     name="showme-tree",
-    version="1.0.2",
+    version="1.0.3",
     author="Sophia Shovkovy",
-    packages=find_packages(where="showme-folder-structure"),
+    packages=find_packages(),
     url="https://github.com/sshovkov/showme-folder-structure",
     entry_points={
         "console_scripts": [
