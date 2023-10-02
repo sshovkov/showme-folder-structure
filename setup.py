@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name="showme-tree",
     version="1.0.0",
@@ -14,4 +17,6 @@ setup(
     install_requires=[
         "gitignore-parser",
     ],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
 )
