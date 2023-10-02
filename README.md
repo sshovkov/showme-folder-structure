@@ -12,7 +12,7 @@ pip install showme-tree
 
 ## Usage
 
-Simply run the following command in your terminal to display the folder and file structure of your VSCode project:
+Run the following command in a Python Virtual Environment to display the folder and file structure of your VSCode project:
 
 ```bash
 showme-tree

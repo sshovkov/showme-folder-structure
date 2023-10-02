@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: showme-tree
-Version: 1.0.5
+Version: 1.0.6
 Summary: UNKNOWN
 Home-page: https://github.com/sshovkov/showme-folder-structure
 Author: Sophia Shovkovy
@@ -23,7 +23,7 @@ pip install showme-tree
 
 ## Usage
 
-Simply run the following command in your terminal to display the folder and file structure of your VSCode project:
+Run the following command in a Python Virtual Environment to display the folder and file structure of your VSCode project:
 
 ```bash
 showme-tree
