@@ -1,50 +1,75 @@
 import os
+from gitignore_parser import parse_gitignore
 
-MAX_FILES_TO_DISPLAY = 3
+
+def main():
+    # Find the root directory
+    project_path = find_project_root()
+
+    if os.path.exists(project_path):
+        display_project_structure(project_path)
+    else:
+        print("No indicators of a version-controlled project root found.")
+        project_path = input("Please enter the path of the VSCode project: ")
+
+        if os.path.exists(project_path):
+            display_project_structure(project_path)
+        else:
+            print("Invalid project path. Please enter a valid path.")
 
 
-def print_folder_structure(folder_path, indent=0):
+def find_project_root():
+    current_directory = os.getcwd()
+
+    # Iterate upwards in the directory hierarchy until a .git directory is found
+    while not os.path.exists(os.path.join(current_directory, ".git")):
+        if current_directory == os.path.dirname(current_directory):
+            return None
+        current_directory = os.path.dirname(current_directory)
+    return current_directory
+
+
+def display_project_structure(project_path):
+    # Get .gitignore path
+    gitignore_path = os.path.join(project_path, ".gitignore")
+
+    if os.path.exists(gitignore_path):
+        matches = parse_gitignore(gitignore_path)
+    else:
+        # If there is no .gitignore file, set matches to a function that always returns False
+        matches = lambda path: False
+
+    print(f"VSCode Project Structure for: {project_path}\n")
+    print_folder_structure(project_path, matches)
+
+
+def print_folder_structure(folder_path, matches, indent=0):
+    # Get the folder name with a trailing '/' if it's a directory
+    folder_name = (
+        os.path.basename(folder_path) + "/"
+        if os.path.isdir(folder_path)
+        else os.path.basename(folder_path)
+    )
     # Print the current folder with appropriate indentation
-    print("  " * indent + "|---" + os.path.basename(folder_path))
+    print("    " * indent + "|---" + folder_name)
+
+    # If the current folder is in .gitignore or is the .git folder, return without printing its contents
+    if matches(folder_path) or os.path.basename(folder_path) == ".git":
+        return
 
     # List all files and subdirectories in the current folder
     items = os.listdir(folder_path)
-    num_files_displayed = 0
 
     for item in items:
         item_path = os.path.join(folder_path, item)
 
         # If the item is a directory, recursively print its structure
         if os.path.isdir(item_path):
-            print_folder_structure(item_path, indent + 1)
+            print_folder_structure(item_path, matches, indent + 1)
         else:
             # If it's a file, print its name with proper indentation
-            if num_files_displayed < MAX_FILES_TO_DISPLAY:
-                print("  " * (indent + 1) + "|---" + item)
-                num_files_displayed += 1
-            elif num_files_displayed == MAX_FILES_TO_DISPLAY:
-                print("  " * (indent + 1) + "|---...")
-                num_files_displayed += 1
-
-        # If there are more than 3 files, print "..." and break the loop
-        if num_files_displayed > MAX_FILES_TO_DISPLAY:
-            break
+            print("    " * (indent + 1) + "|---" + item)
 
 
-# Main function to handle user input and start printing folder structure
-def main():
-    # Ask user to enter the path of the VSCode project
-    project_path = input("Enter the path of the VSCode project: ")
-
-    # Check if the entered path exists
-    if os.path.exists(project_path):
-        print(f"VSCode Project Structure for: {project_path}")
-        # Call the function to print folder and file structure
-        print_folder_structure(project_path)
-    else:
-        print("Invalid project path. Please enter a valid path.")
-
-
-# Call the main function if the script is run
 if __name__ == "__main__":
     main()
