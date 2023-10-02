@@ -1,10 +1,14 @@
 # showme-tree
 
-`showme-tree` is a command-line tool that allows you to visualize the folder and file structure of your VSCode project, excluding files and folders specified in `.gitignore`.
+`showme-tree` is a command-line tool that prints the folder and file structure of your VSCode project, excluding files and folders specified in `.gitignore`.
 
 ## Installation
 
-You can install `showme-tree` using...
+You can install `showme-tree` using pip:
+
+```bash
+pip install showme-tree
+```
 
 ## Usage
 
@@ -14,7 +18,7 @@ Simply run the following command in your terminal to display the folder and file
 showme-tree
 ```
 
-Output:
+Example Output:
 
 ```
 |---showme-folder-structure/
