@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="showme-tree",
-    version="1.0.6",
+    version="1.0.7",
     author="Sophia Shovkovy",
     packages=find_packages(),
     url="https://github.com/sshovkov/showme-folder-structure",
@@ -17,6 +17,7 @@ setup(
     install_requires=[
         "gitignore-parser",
     ],
+    description="A command-line tool that prints the folder and file structure of your VSCode project, excluding nested items of content in .gitignore.",
     long_description=long_description,
     long_description_content_type="text/markdown",
 )

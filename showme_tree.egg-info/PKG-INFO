@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: showme-tree
-Version: 1.0.6
-Summary: UNKNOWN
+Version: 1.0.7
+Summary: A command-line tool that prints the folder and file structure of your VSCode project, excluding nested items of content in .gitignore.
 Home-page: https://github.com/sshovkov/showme-folder-structure
 Author: Sophia Shovkovy
 License: UNKNOWN
@@ -28,6 +28,8 @@ Run the following command in a Python Virtual Environment to display the folder 
 ```bash
 showme-tree
 ```
+
+The command works best in a version-controlled Git project. If you are not working a Git project, you'll be asked to manually input the path to the project root directory.
 
 Example Output:
 

@@ -18,6 +18,8 @@ Run the following command in a Python Virtual Environment to display the folder 
 showme-tree
 ```
 
+The command works best in a version-controlled Git project. If you are not working a Git project, you'll be asked to manually input the path to the project root directory.
+
 Example Output:
 
 ```
